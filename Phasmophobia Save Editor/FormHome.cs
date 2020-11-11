@@ -189,7 +189,8 @@ namespace Phasmophobia_Save_Editor
             var intData = DataMap.Where(d => d.Category == "IntData" && d.NumberBox != null);
             foreach (var v in intData)
             {
-                v.SetValue();
+                if (v.Key.Contains("xp")) v.SetValue(100);
+                else v.SetValue();
             }
         }
 

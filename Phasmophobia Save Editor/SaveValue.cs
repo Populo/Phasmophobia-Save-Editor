@@ -9,9 +9,9 @@ namespace Phasmophobia_Save_Editor
         public string Category { get; set; }
         public NumericUpDown NumberBox { get; set; }
 
-        public void SetValue()
+        public void SetValue(int multiple = 1)
         {
-            Value = NumberBox.Text;
+            Value = (NumberBox.Value * multiple).ToString();
         }
 
         public void GetValue(int divide = 1)

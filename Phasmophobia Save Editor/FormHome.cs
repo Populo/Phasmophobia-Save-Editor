@@ -8,88 +8,100 @@ using System.Windows.Forms;
 
 namespace Phasmophobia_Save_Editor
 {
-    public partial class Form1 : Form
+    public partial class FormHome : Form
     {
-        private readonly string ENC_KEY = "CHANGE ME TO YOUR OWN RANDOM STRING";
+        private readonly string _encKey = "CHANGE ME TO YOUR OWN RANDOM STRING";
 
         private string SaveFileLocation { get; set; }
         private List<SaveValue> DataMap { get; set; }
+        private Dictionary<string, NumericUpDown> ControlMap { get; set; }
         private JObject SaveData { get; set; }
 
-        public Form1()
+        public FormHome()
         {
             InitializeComponent();
             MaximizeBox = false;
-
+            BuildControlMap();
             SaveFileLocation = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"Low\Kinetic Games\Phasmophobia\saveData.txt";
+        }
+
+        private void BuildControlMap()
+        {
+            ControlMap = new Dictionary<string, NumericUpDown>()
+            {
+                {"myTotalExp", numericUpDownXP},
+                {"PlayersMoney", numericUpDownMoney},
+                {"EMFReaderInventory", numericUpDownEMF},
+                {"FlashlightInventory", numericUpDownFlashlight},
+                {"CameraInventory", numericUpDownCamera},
+                {"LighterInventory", numericUpDownLighter},
+                {"CandleInventory", numericUpDownCandle},
+                {"UVFlashlightInventory", numericUpDownUV},
+                {"CrucifixInventory", numericUpDownCrucifix},
+                {"DSLRCameraInventory", numericUpDownVideoCamera},
+                {"EVPRecorderInventory", numericUpDownSpiritBox},
+                {"SaltInventory", numericUpDownSalt},
+                {"SageInventory", numericUpDownSage},
+                {"TripodInventory", numericUpDownTripod},
+                {"StrongFlashlightInventory", numericUpDownStrongFlashlight},
+                {"MotionSensorInventory", numericUpDownMotionSensor},
+                {"SoundSensorInventory", numericUpDownSoundSensor},
+                {"SanityPillsInventory", numericUpDownSanity},
+                {"ThermometerInventory", numericUpDownThermometer},
+                {"GhostWritingBookInventory", numericUpDownBook},
+                {"IRLightSensorInventory", numericUpDownIR},
+                {"ParabolicMicrophoneInventory", numericUpDownParabolic},
+                {"GlowstickInventory", numericUpDownGlowStick},
+                {"HeadMountedCameraInventory", numericUpDownHeadCam}
+            };
         }
 
         private void LoadFile()
         {
-            string save_enc;
+            string saveEnc;
             try
             {
-                save_enc = File.ReadAllText(SaveFileLocation);
+                saveEnc = File.ReadAllText(SaveFileLocation);
             } 
             catch
             {
-                save_enc = "";
+                saveEnc = "";
             }
             
-            if (string.IsNullOrEmpty(save_enc) || !SaveFileLocation.EndsWith("saveData.txt"))
+            if (string.IsNullOrEmpty(saveEnc) || !SaveFileLocation.EndsWith("saveData.txt"))
             {
                 MessageBox.Show(@"Could not load save file. Please select the save file and click load again. Default location is 'AppData\LocalLow\Kinetic Games\Phasmophobia'");
                 SelectSaveFile();
             }
 
-            if (!string.IsNullOrEmpty(save_enc) && SaveFileLocation.EndsWith("saveData.txt"))
-            {
-                string save_dec = Crypt(save_enc, ENC_KEY);
+            if (string.IsNullOrEmpty(saveEnc) || !SaveFileLocation.EndsWith("saveData.txt")) return;
+            
+            var saveDec = Crypt(saveEnc, _encKey);
 
-                DataMap = new List<SaveValue>();
-                BuildDataMap(save_dec);
+            DataMap = new List<SaveValue>();
+            BuildDataMap(saveDec);
 
-                PopulateForm();
+            PopulateForm();
 
-                buttonSave.Enabled = true;
-                buttonGhost.Enabled = true;
-            }
+            buttonSave.Enabled = true;
+            buttonGhost.Enabled = true;
         }
 
         private void PopulateForm()
         {
-            numericUpDownXP.Value = int.Parse(DataMap.Where(x => x.Key == "myTotalExp").First().Value) / 100;
-            numericUpDownMoney.Value = int.Parse(DataMap.Where(x => x.Key == "PlayersMoney").First().Value);
-
-            numericUpDownEMF.Value = int.Parse(DataMap.Where(x => x.Key == "EMFReaderInventory").First().Value);
-            numericUpDownFlashlight.Value = int.Parse(DataMap.Where(x => x.Key == "FlashlightInventory").First().Value);
-            numericUpDownCamera.Value = int.Parse(DataMap.Where(x => x.Key == "CameraInventory").First().Value);
-            numericUpDownLighter.Value = int.Parse(DataMap.Where(x => x.Key == "LighterInventory").First().Value);
-            numericUpDownCandle.Value = int.Parse(DataMap.Where(x => x.Key == "CandleInventory").First().Value);
-            numericUpDownUV.Value = int.Parse(DataMap.Where(x => x.Key == "UVFlashlightInventory").First().Value);
-            numericUpDownCrucifix.Value = int.Parse(DataMap.Where(x => x.Key == "CrucifixInventory").First().Value);
-            numericUpDownVideoCamera.Value = int.Parse(DataMap.Where(x => x.Key == "DSLRCameraInventory").First().Value);
-            numericUpDownSpiritBox.Value = int.Parse(DataMap.Where(x => x.Key == "EVPRecorderInventory").First().Value);
-            numericUpDownSalt.Value = int.Parse(DataMap.Where(x => x.Key == "SaltInventory").First().Value);
-            numericUpDownSage.Value = int.Parse(DataMap.Where(x => x.Key == "SageInventory").First().Value);
-            numericUpDownTripod.Value = int.Parse(DataMap.Where(x => x.Key == "TripodInventory").First().Value);
-            numericUpDownStrongFlashlight.Value = int.Parse(DataMap.Where(x => x.Key == "StrongFlashlightInventory").First().Value);
-            numericUpDownMotionSensor.Value = int.Parse(DataMap.Where(x => x.Key == "MotionSensorInventory").First().Value);
-            numericUpDownSoundSensor.Value = int.Parse(DataMap.Where(x => x.Key == "SoundSensorInventory").First().Value);
-            numericUpDownSanity.Value = int.Parse(DataMap.Where(x => x.Key == "SanityPillsInventory").First().Value);
-            numericUpDownThermometer.Value = int.Parse(DataMap.Where(x => x.Key == "ThermometerInventory").First().Value);
-            numericUpDownBook.Value = int.Parse(DataMap.Where(x => x.Key == "GhostWritingBookInventory").First().Value);
-            numericUpDownIR.Value = int.Parse(DataMap.Where(x => x.Key == "IRLightSensorInventory").First().Value);
-            numericUpDownParabolic.Value = int.Parse(DataMap.Where(x => x.Key == "ParabolicMicrophoneInventory").First().Value);
-            numericUpDownGlowStick.Value = int.Parse(DataMap.Where(x => x.Key == "GlowstickInventory").First().Value);
-            numericUpDownHeadCam.Value = int.Parse(DataMap.Where(x => x.Key == "HeadMountedCameraInventory").First().Value);
+            var intData = DataMap.Where(d => d.Category == "IntData" && d.NumberBox != null);
+            foreach (var v in intData)
+            {
+                if (v.Key.Contains("xp")) v.GetValue(100);
+                else v.GetValue();
+            }
         }
 
-        private void BuildDataMap(string save_dec)
+        private void BuildDataMap(string saveDec)
         {
-            var data = JObject.Parse(save_dec);
+            var data = JObject.Parse(saveDec);
             SaveData = data;
-            string[] categories = new[] { "IntData", "StringData", "FloatData", "BoolData" };
+            string[] categories = { "IntData", "StringData", "FloatData", "BoolData" };
 
             foreach (var s  in categories)
             {
@@ -101,11 +113,28 @@ namespace Phasmophobia_Save_Editor
         {
             foreach (var j in jToken)
             {
-                DataMap.Add(new SaveValue() {
-                    Key = j["Key"].ToString(),
-                    Value = j["Value"].ToString(),
-                    Category = category
-                });
+                var key = j["Key"]?.ToString();
+                try
+                {
+                    DataMap.Add(new SaveValue()
+                    {
+                        Key = key,
+                        Value = j["Value"]?.ToString(),
+                        Category = category,
+                        NumberBox = ControlMap[key]
+                    });
+
+                }
+                catch
+                {
+                    DataMap.Add(new SaveValue()
+                    {
+                        Key = key,
+                        Value = j["Value"]?.ToString(),
+                        Category = category
+                    });
+                }
+               
             }
         }
 
@@ -147,41 +176,21 @@ namespace Phasmophobia_Save_Editor
             UpdateMap();
             UpdateJson();
 
-            string save_dec = SaveData.ToString();
-            save_dec = save_dec.Replace(" ", "").Replace("\n", "").Replace("\t", "").Replace("\r", "");
+            string saveDec = SaveData.ToString();
+            saveDec = saveDec.Replace(" ", "").Replace("\n", "").Replace("\t", "").Replace("\r", "");
 
-            string save_enc = Crypt(save_dec, ENC_KEY);
+            string saveEnc = Crypt(saveDec, _encKey);
 
-            File.WriteAllText(SaveFileLocation, save_enc);
+            File.WriteAllText(SaveFileLocation, saveEnc);
         }
 
         private void UpdateMap()
         {
-            DataMap.Where(x => x.Key == "myTotalExp").First().Value = (numericUpDownXP.Value*100).ToString();
-            DataMap.Where(x => x.Key == "PlayersMoney").First().Value = numericUpDownMoney.Value.ToString();
-
-            DataMap.Where(x => x.Key == "EMFReaderInventory").First().Value = numericUpDownEMF.Value.ToString();
-            DataMap.Where(x => x.Key == "FlashlightInventory").First().Value = numericUpDownFlashlight.Value.ToString();
-            DataMap.Where(x => x.Key == "CameraInventory").First().Value = numericUpDownCamera.Value.ToString();
-            DataMap.Where(x => x.Key == "LighterInventory").First().Value = numericUpDownLighter.Value.ToString();
-            DataMap.Where(x => x.Key == "CandleInventory").First().Value = numericUpDownCandle.Value.ToString();
-            DataMap.Where(x => x.Key == "UVFlashlightInventory").First().Value = numericUpDownUV.Value.ToString();
-            DataMap.Where(x => x.Key == "CrucifixInventory").First().Value = numericUpDownCrucifix.Value.ToString();
-            DataMap.Where(x => x.Key == "DSLRCameraInventory").First().Value = numericUpDownVideoCamera.Value.ToString();
-            DataMap.Where(x => x.Key == "EVPRecorderInventory").First().Value = numericUpDownSpiritBox.Value.ToString();
-            DataMap.Where(x => x.Key == "SaltInventory").First().Value = numericUpDownSalt.Value.ToString();
-            DataMap.Where(x => x.Key == "SageInventory").First().Value = numericUpDownSage.Value.ToString();
-            DataMap.Where(x => x.Key == "TripodInventory").First().Value = numericUpDownTripod.Value.ToString();
-            DataMap.Where(x => x.Key == "StrongFlashlightInventory").First().Value = numericUpDownStrongFlashlight.Value.ToString();
-            DataMap.Where(x => x.Key == "MotionSensorInventory").First().Value = numericUpDownMotionSensor.Value.ToString();
-            DataMap.Where(x => x.Key == "SoundSensorInventory").First().Value = numericUpDownSoundSensor.Value.ToString();
-            DataMap.Where(x => x.Key == "SanityPillsInventory").First().Value = numericUpDownSanity.Value.ToString();
-            DataMap.Where(x => x.Key == "ThermometerInventory").First().Value = numericUpDownThermometer.Value.ToString();
-            DataMap.Where(x => x.Key == "GhostWritingBookInventory").First().Value = numericUpDownBook.Value.ToString();
-            DataMap.Where(x => x.Key == "IRLightSensorInventory").First().Value = numericUpDownIR.Value.ToString();
-            DataMap.Where(x => x.Key == "ParabolicMicrophoneInventory").First().Value = numericUpDownParabolic.Value.ToString();
-            DataMap.Where(x => x.Key == "GlowstickInventory").First().Value = numericUpDownGlowStick.Value.ToString();
-            DataMap.Where(x => x.Key == "HeadMountedCameraInventory").First().Value = numericUpDownHeadCam.Value.ToString();
+            var intData = DataMap.Where(d => d.Category == "IntData" && d.NumberBox != null);
+            foreach (var v in intData)
+            {
+                v.SetValue();
+            }
         }
 
         private void UpdateJson()
@@ -191,25 +200,25 @@ namespace Phasmophobia_Save_Editor
                 if (d.Category == "IntData")
                 {
                     var cat = SaveData[d.Category];
-                    var node = cat.Where(x => x["Key"].ToString() == d.Key).First();
+                    var node = cat.First(x => x["Key"]?.ToString() == d.Key);
                     node["Value"] = int.Parse(d.Value);
                 }
                 else if (d.Category == "FloatData")
                 {
                     var cat = SaveData[d.Category];
-                    var node = cat.Where(x => x["Key"].ToString() == d.Key).First();
+                    var node = cat.First(x => x["Key"]?.ToString() == d.Key);
                     node["Value"] = float.Parse(d.Value);
                 }
                 else if (d.Category == "BoolData")
                 {
                     var cat = SaveData[d.Category];
-                    var node = cat.Where(x => x["Key"].ToString() == d.Key).First();
+                    var node = cat.First(x => x["Key"]?.ToString() == d.Key);
                     node["Value"] = bool.Parse(d.Value);
                 }
                 else if (d.Category == "StringData")
                 {
                     var cat = SaveData[d.Category];
-                    var node = cat.Where(x => x["Key"].ToString() == d.Key).First();
+                    var node = cat.First(x => x["Key"]?.ToString() == d.Key);
                     node["Value"] = d.Value;
                 }
             }
@@ -217,8 +226,7 @@ namespace Phasmophobia_Save_Editor
 
         private void buttonGhost_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(textBoxGhost.Text)) textBoxGhost.Text = DataMap.Where(d => d.Key == "GhostType").FirstOrDefault().Value;
-            else textBoxGhost.Text = "";
+            textBoxGhost.Text = string.IsNullOrEmpty(textBoxGhost.Text) ? DataMap.FirstOrDefault(d => d.Key == "GhostType")?.Value : "";
         }
     }
 }

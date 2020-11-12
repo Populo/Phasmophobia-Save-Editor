@@ -23,6 +23,7 @@ namespace Phasmophobia_Save_Editor
             MaximizeBox = false;
             BuildControlMap();
             SaveFileLocation = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"Low\Kinetic Games\Phasmophobia\saveData.txt";
+            LoadFile();
         }
 
         private void BuildControlMap()

@@ -80,6 +80,7 @@ namespace Phasmophobia_Save_Editor
             var saveDec = Crypt(saveEnc, _encKey);
 
             DataMap = new List<SaveValue>();
+            SaveData = null;
             BuildDataMap(saveDec);
 
             PopulateForm();
@@ -229,6 +230,16 @@ namespace Phasmophobia_Save_Editor
         private void buttonGhost_Click(object sender, EventArgs e)
         {
             textBoxGhost.Text = string.IsNullOrEmpty(textBoxGhost.Text) ? DataMap.FirstOrDefault(d => d.Key == "GhostType")?.Value : "";
+        }
+
+        private void buttonSetItems_Click(object sender, EventArgs e)
+        {
+            foreach (var n in ControlMap.Values)
+            {
+                if (n == numericUpDownMoney || n == numericUpDownXP) continue;
+
+                n.Value = numericUpDownSetItems.Value;
+            }
         }
     }
 }

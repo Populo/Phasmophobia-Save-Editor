@@ -83,6 +83,8 @@
             this.label24 = new System.Windows.Forms.Label();
             this.buttonGhost = new System.Windows.Forms.Button();
             this.textBoxGhost = new System.Windows.Forms.TextBox();
+            this.buttonSetItems = new System.Windows.Forms.Button();
+            this.numericUpDownSetItems = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize) (this.numericUpDownXP)).BeginInit();
             ((System.ComponentModel.ISupportInitialize) (this.numericUpDownMoney)).BeginInit();
             ((System.ComponentModel.ISupportInitialize) (this.numericUpDownEMF)).BeginInit();
@@ -107,11 +109,12 @@
             ((System.ComponentModel.ISupportInitialize) (this.numericUpDownThermometer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize) (this.numericUpDownSanity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize) (this.numericUpDownSoundSensor)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.numericUpDownSetItems)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonLoad
             // 
-            this.buttonLoad.Location = new System.Drawing.Point(116, 10);
+            this.buttonLoad.Location = new System.Drawing.Point(94, 10);
             this.buttonLoad.Name = "buttonLoad";
             this.buttonLoad.Size = new System.Drawing.Size(64, 20);
             this.buttonLoad.TabIndex = 0;
@@ -123,7 +126,7 @@
             // buttonSave
             // 
             this.buttonSave.Enabled = false;
-            this.buttonSave.Location = new System.Drawing.Point(252, 10);
+            this.buttonSave.Location = new System.Drawing.Point(279, 10);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(64, 20);
             this.buttonSave.TabIndex = 1;
@@ -369,7 +372,7 @@
             // numericUpDownXP
             // 
             this.numericUpDownXP.Location = new System.Drawing.Point(105, 69);
-            this.numericUpDownXP.Maximum = new decimal(new int[] {999, 0, 0, 0});
+            this.numericUpDownXP.Maximum = new decimal(new int[] {99999, 0, 0, 0});
             this.numericUpDownXP.Minimum = new decimal(new int[] {1, 0, 0, 0});
             this.numericUpDownXP.Name = "numericUpDownXP";
             this.numericUpDownXP.Size = new System.Drawing.Size(86, 20);
@@ -615,11 +618,34 @@
             this.textBoxGhost.TabIndex = 11;
             this.textBoxGhost.TabStop = false;
             // 
+            // buttonSetItems
+            // 
+            this.buttonSetItems.Location = new System.Drawing.Point(225, 67);
+            this.buttonSetItems.Name = "buttonSetItems";
+            this.buttonSetItems.Size = new System.Drawing.Size(64, 20);
+            this.buttonSetItems.TabIndex = 12;
+            this.buttonSetItems.TabStop = false;
+            this.buttonSetItems.Text = "Set Items";
+            this.buttonSetItems.UseVisualStyleBackColor = true;
+            this.buttonSetItems.Click += new System.EventHandler(this.buttonSetItems_Click);
+            // 
+            // numericUpDownSetItems
+            // 
+            this.numericUpDownSetItems.Location = new System.Drawing.Point(313, 69);
+            this.numericUpDownSetItems.Maximum = new decimal(new int[] {999, 0, 0, 0});
+            this.numericUpDownSetItems.Name = "numericUpDownSetItems";
+            this.numericUpDownSetItems.Size = new System.Drawing.Size(86, 20);
+            this.numericUpDownSetItems.TabIndex = 13;
+            this.numericUpDownSetItems.TabStop = false;
+            this.numericUpDownSetItems.Value = new decimal(new int[] {100, 0, 0, 0});
+            // 
             // FormHome
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(407, 442);
+            this.Controls.Add(this.numericUpDownSetItems);
+            this.Controls.Add(this.buttonSetItems);
             this.Controls.Add(this.textBoxGhost);
             this.Controls.Add(this.buttonGhost);
             this.Controls.Add(this.label24);
@@ -702,9 +728,13 @@
             ((System.ComponentModel.ISupportInitialize) (this.numericUpDownThermometer)).EndInit();
             ((System.ComponentModel.ISupportInitialize) (this.numericUpDownSanity)).EndInit();
             ((System.ComponentModel.ISupportInitialize) (this.numericUpDownSoundSensor)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.numericUpDownSetItems)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Windows.Forms.Button buttonSetItems;
+        private System.Windows.Forms.NumericUpDown numericUpDownSetItems;
 
         #endregion
 

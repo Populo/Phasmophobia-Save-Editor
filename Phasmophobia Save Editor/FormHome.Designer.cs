@@ -82,7 +82,6 @@
             this.numericUpDownSoundSensor = new System.Windows.Forms.NumericUpDown();
             this.label24 = new System.Windows.Forms.Label();
             this.buttonGhost = new System.Windows.Forms.Button();
-            this.textBoxGhost = new System.Windows.Forms.TextBox();
             this.buttonSetItems = new System.Windows.Forms.Button();
             this.numericUpDownSetItems = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize) (this.numericUpDownXP)).BeginInit();
@@ -595,43 +594,34 @@
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(113, 13);
             this.label24.TabIndex = 9;
-            this.label24.Text = "By: Populo#0001 v2.0";
+            this.label24.Text = "By: Populo#0001 v3.0";
             // 
             // buttonGhost
             // 
             this.buttonGhost.Enabled = false;
-            this.buttonGhost.Location = new System.Drawing.Point(225, 93);
+            this.buttonGhost.Location = new System.Drawing.Point(223, 66);
             this.buttonGhost.Name = "buttonGhost";
-            this.buttonGhost.Size = new System.Drawing.Size(64, 20);
+            this.buttonGhost.Size = new System.Drawing.Size(172, 20);
             this.buttonGhost.TabIndex = 10;
             this.buttonGhost.TabStop = false;
-            this.buttonGhost.Text = "Ghost";
+            this.buttonGhost.Text = "Ghost Helper";
             this.buttonGhost.UseVisualStyleBackColor = true;
             this.buttonGhost.Click += new System.EventHandler(this.buttonGhost_Click);
             // 
-            // textBoxGhost
-            // 
-            this.textBoxGhost.Location = new System.Drawing.Point(313, 94);
-            this.textBoxGhost.Name = "textBoxGhost";
-            this.textBoxGhost.ReadOnly = true;
-            this.textBoxGhost.Size = new System.Drawing.Size(86, 20);
-            this.textBoxGhost.TabIndex = 11;
-            this.textBoxGhost.TabStop = false;
-            // 
             // buttonSetItems
             // 
-            this.buttonSetItems.Location = new System.Drawing.Point(225, 67);
+            this.buttonSetItems.Location = new System.Drawing.Point(223, 92);
             this.buttonSetItems.Name = "buttonSetItems";
             this.buttonSetItems.Size = new System.Drawing.Size(64, 20);
             this.buttonSetItems.TabIndex = 12;
             this.buttonSetItems.TabStop = false;
             this.buttonSetItems.Text = "Set Items";
             this.buttonSetItems.UseVisualStyleBackColor = true;
-            this.buttonSetItems.Click += new System.EventHandler(this.buttonSetItems_Click);
+            this.buttonSetItems.Click += new System.EventHandler(buttonSetItems_Click);
             // 
             // numericUpDownSetItems
             // 
-            this.numericUpDownSetItems.Location = new System.Drawing.Point(313, 69);
+            this.numericUpDownSetItems.Location = new System.Drawing.Point(313, 92);
             this.numericUpDownSetItems.Maximum = new decimal(new int[] {999, 0, 0, 0});
             this.numericUpDownSetItems.Name = "numericUpDownSetItems";
             this.numericUpDownSetItems.Size = new System.Drawing.Size(86, 20);
@@ -646,7 +636,6 @@
             this.ClientSize = new System.Drawing.Size(407, 442);
             this.Controls.Add(this.numericUpDownSetItems);
             this.Controls.Add(this.buttonSetItems);
-            this.Controls.Add(this.textBoxGhost);
             this.Controls.Add(this.buttonGhost);
             this.Controls.Add(this.label24);
             this.Controls.Add(this.numericUpDownSoundSensor);
@@ -792,7 +781,6 @@
         private System.Windows.Forms.NumericUpDown numericUpDownSoundSensor;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Button buttonGhost;
-        private System.Windows.Forms.TextBox textBoxGhost;
     }
 }
 

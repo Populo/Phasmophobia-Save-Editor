@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace Phasmophobia_Save_Editor
+namespace Phasmophobia_Save_Editor.Models
 {
     internal class SaveValue
     {

@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Phasmophobia_Save_Editor.Models;
 
 namespace Phasmophobia_Save_Editor
 {
@@ -229,7 +230,10 @@ namespace Phasmophobia_Save_Editor
 
         private void buttonGhost_Click(object sender, EventArgs e)
         {
-            textBoxGhost.Text = string.IsNullOrEmpty(textBoxGhost.Text) ? DataMap.FirstOrDefault(d => d.Key == "GhostType")?.Value : "";
+            var ghostForm = new FormGhost(DataMap.FirstOrDefault(d => d.Key == "GhostType")?.Value);
+            ghostForm.Show();
+            
+            //textBoxGhost.Text = string.IsNullOrEmpty(textBoxGhost.Text) ? DataMap.FirstOrDefault(d => d.Key == "GhostType")?.Value : "";
         }
 
         private void buttonSetItems_Click(object sender, EventArgs e)

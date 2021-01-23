@@ -20,11 +20,11 @@ namespace Phasmophobia_Save_Editor
             Evidences = new Dictionary<Evidence, CheckBox>()
             {
                 {Evidence.EMF, checkBoxEMF},
-                {Evidence.FINGIES, checkBoxFingies},
-                {Evidence.GHOST_ORB, checkBoxOrb},
-                {Evidence.SPIRIT_BOX, checkBoxSpiritBox},
-                {Evidence.GHOST_WRITING, checkBoxWriting},
-                {Evidence.FREEZING_TEMPS, checkBoxFreezing}
+                {Evidence.Fingies, checkBoxFingies},
+                {Evidence.GhostOrb, checkBoxOrb},
+                {Evidence.SpiritBox, checkBoxSpiritBox},
+                {Evidence.GhostWriting, checkBoxWriting},
+                {Evidence.Freezing, checkBoxFreezing}
             };
             Ghosts = new Dictionary<Ghost, Label>()
             {

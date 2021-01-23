@@ -4,40 +4,40 @@
     {
         public static readonly Ghost Spirit = new Ghost("Spirit", 
             "Basic ghost", 
-            new []{Evidence.SPIRIT_BOX, Evidence.FINGIES, Evidence.GHOST_WRITING});
+            new []{Evidence.SpiritBox, Evidence.Fingies, Evidence.GhostWriting});
         public static readonly Ghost Wraith = new Ghost("Wraith", 
             "Can fly and can go through walls", 
-            new []{Evidence.FINGIES, Evidence.FREEZING_TEMPS, Evidence.SPIRIT_BOX});
+            new []{Evidence.Fingies, Evidence.Freezing, Evidence.SpiritBox});
         public static readonly Ghost Phantom = new Ghost("Phantom", 
             "Photos will make it disappear for a short time, Ouija boards will anger it", 
-            new [] {Evidence.EMF, Evidence.GHOST_ORB, Evidence.FREEZING_TEMPS});
+            new [] {Evidence.EMF, Evidence.GhostOrb, Evidence.Freezing});
         public static readonly Ghost Poltergeist = new Ghost("Poltergeist", 
             "Likes to throw things", 
-            new []{Evidence.SPIRIT_BOX, Evidence.FINGIES, Evidence.GHOST_ORB});
+            new []{Evidence.SpiritBox, Evidence.Fingies, Evidence.GhostOrb});
         public static readonly Ghost Banshee = new Ghost("Banshee",
             "Will target one person at a time. Use a crucifix to calm it down.",
-            new[] {Evidence.EMF, Evidence.FINGIES, Evidence.FREEZING_TEMPS});
+            new[] {Evidence.EMF, Evidence.Fingies, Evidence.Freezing});
         public static readonly Ghost Jinn = new Ghost("Jinn", 
             "Territorial, can move quickly when attacking. Turn off power to slow it down.", 
-            new []{Evidence.SPIRIT_BOX, Evidence.GHOST_ORB, Evidence.EMF});
+            new []{Evidence.SpiritBox, Evidence.GhostOrb, Evidence.EMF});
         public static readonly Ghost Mare = new Ghost("Mare",
             "Likes the dark. Turn on lights to reduce chances to attack.",
-            new[] {Evidence.SPIRIT_BOX, Evidence.GHOST_ORB, Evidence.FREEZING_TEMPS});
+            new[] {Evidence.SpiritBox, Evidence.GhostOrb, Evidence.Freezing});
         public static readonly Ghost Revenant = new Ghost("Revenant",
             "This ghost is very fast and, along with Jinn, can outrun you during a hunt.",
-            new[] {Evidence.EMF, Evidence.FINGIES, Evidence.GHOST_WRITING});
+            new[] {Evidence.EMF, Evidence.Fingies, Evidence.GhostWriting});
         public static readonly Ghost Shade = new Ghost("Shade", 
             "Very shy. Do things alone to gather evidence.",
-            new [] {Evidence.EMF, Evidence.GHOST_ORB, Evidence.GHOST_WRITING});
+            new [] {Evidence.EMF, Evidence.GhostOrb, Evidence.GhostWriting});
         public static readonly Ghost Demon = new Ghost("Demon", 
             "Increased chance of attack. Ouija boards will not lower your sanity.",
-            new [] {Evidence.SPIRIT_BOX, Evidence.GHOST_WRITING, Evidence.FREEZING_TEMPS});
+            new [] {Evidence.SpiritBox, Evidence.GhostWriting, Evidence.Freezing});
         public static readonly Ghost Yurei = new Ghost("Yurei",
             "This ghost will drain your sanity very quickly.",
-            new [] {Evidence.GHOST_ORB, Evidence.GHOST_WRITING, Evidence.FREEZING_TEMPS});
+            new [] {Evidence.GhostOrb, Evidence.GhostWriting, Evidence.Freezing});
         public static readonly Ghost Oni = new Ghost("Oni",
             "Acive when multiple people are nearby. Likes to throw things.",
-            new [] {Evidence.EMF, Evidence.SPIRIT_BOX, Evidence.GHOST_WRITING});
+            new [] {Evidence.EMF, Evidence.SpiritBox, Evidence.GhostWriting});
 
 
         public static readonly Ghost[] Ghosts = new[]

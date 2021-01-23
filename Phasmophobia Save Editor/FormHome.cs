@@ -230,9 +230,11 @@ namespace Phasmophobia_Save_Editor
 
         private void buttonGhost_Click(object sender, EventArgs e)
         {
-            var ghostForm = new FormGhost(DataMap.FirstOrDefault(d => d.Key == "GhostType")?.Value);
-            ghostForm.Show();
-            
+            using (var ghostForm = new FormGhost(DataMap.FirstOrDefault(d => d.Key == "GhostType")?.Value))
+            {
+                ghostForm.Show();
+            }
+
             //textBoxGhost.Text = string.IsNullOrEmpty(textBoxGhost.Text) ? DataMap.FirstOrDefault(d => d.Key == "GhostType")?.Value : "";
         }
 
